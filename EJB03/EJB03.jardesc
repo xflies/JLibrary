@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="MS950" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/peter2_weng/workspace/EJB03.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/EJB03/EJB03.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=EJB03/src&lt;com.peter2.ejb.exception"/>
+        <javaElement handleIdentifier="=EJB03/src&lt;com.peter2.ejb"/>
+        <javaElement handleIdentifier="=EJB03/src&lt;com.peter2"/>
+        <javaElement handleIdentifier="=EJB03/src&lt;com.peter2.ejb.entity.raw"/>
+        <javaElement handleIdentifier="=EJB03/src&lt;com.peter2.ejb.service"/>
+    </selectedElements>
+</jardesc>

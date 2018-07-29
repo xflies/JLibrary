@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:task="http://www.springframework.org/schema/task" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    ">
+		
+	<!-- Annotation configuration for Autowire -->
+	<context:annotation-config />
+	
+	<!-- AOP: transaction using annotation -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- Beans: EntityManager & TransactionManager -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="Library-unit" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<!-- Beans: Spring DAOs -->
+	<bean id="BookDao" class="com.peter2.ejb.dao.jpaImpl.BookDaoImpl"/>
+	<bean id="BookEntityDao" class="com.peter2.ejb.dao.jpaImpl.BookEntityDaoImpl"/>
+	<bean id="ReaderDao" class="com.peter2.ejb.dao.jpaImpl.ReaderDaoImpl"/>
+	<bean id="BorrowNoteDao" class="com.peter2.ejb.dao.jpaImpl.BorrowNoteDaoImpl"/>
+	<bean id="ReserveNoteDao" class="com.peter2.ejb.dao.jpaImpl.ReserveNoteDaoImpl"/>
+	<bean id="ReaderDao2" class="com.peter2.ejb.dao2.jpaImpl.ReaderDaoImpl2" />
+    
+</beans>

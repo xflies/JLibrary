@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+ "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+ <struts-config> 
+    <form-beans>
+    	<form-bean name="loginForm" type="com.peter2.struts1.form.LoginForm" />
+    	<form-bean name="readerInfoForm" type="com.peter2.struts1.form.ReaderInfoForm" />
+    </form-beans>
+
+    <global-exceptions>
+    	<exception key="login.expected" 
+    		type="com.peter2.struts1.exception.LoginExpectedException" 
+           	path="/WEB-INF/pages/errMsg.jsp" /> 
+    	<exception key="login.failed" 
+    		type="com.peter2.ejb.exception.LoginFailedException" 
+           	path="/WEB-INF/pages/errMsg.jsp" /> 
+        <exception key="invalid.isbn" 
+            	type="com.peter2.ejb.exception.InvalidBookException" 
+            	path="/WEB-INF/pages/errMsg.jsp" /> 
+        <exception key="invalid.readerId" 
+        	type="com.peter2.ejb.exception.InvalidReaderException" 
+        	path="/WEB-INF/pages/errMsg.jsp" /> 
+    	<exception key="general.exception" 
+    		type="java.lang.Exception" 
+           	path="/WEB-INF/pages/errMsg.jsp" /> 
+    </global-exceptions>
+
+    <action-mappings>
+        <action attribute="loginForm" name="loginForm" validate="true" input="/WEB-INF/form/login.jsp" 
+            path="/login" 
+            scope="request"
+            type="com.peter2.struts1.action.LoginAction"
+            > 
+            <forward
+                name="success" 
+                path="/WEB-INF/pages/loginSuccess.jsp"/> 
+            <forward
+                name="failed" 
+                path="/WEB-INF/pages/loginFailed.jsp"/>
+        </action> 
+
+        <action  
+            path="/logout" 
+            scope="request"
+            type="com.peter2.struts1.action.LogoutAction"
+            > 
+            <forward
+                name="logout" 
+                path="/WEB-INF/pages/logout.jsp"/>
+        </action> 
+
+        <action 
+            path="/listAllBooks" 
+            type="com.peter2.struts1.action.ListAllBooksAction"> 
+            <forward
+                name="listAll" 
+                path="/WEB-INF/pages/listAll.jsp"/> 
+        </action> 
+
+        <action 
+            path="/showReaderStatus" 
+            type="com.peter2.struts1.action.ShowReaderStatusAction"> 
+            <forward
+                name="readerStatus" 
+                path="/WEB-INF/pages/readerStatus.jsp"/> 
+        </action> 
+
+        <action 
+            path="/reserveBook" 
+            type="com.peter2.struts1.action.ReserveBookAction">
+            <forward
+                name="showReserve" 
+                path="/WEB-INF/pages/showReserve.jsp"/> 
+        </action> 
+
+        <action 
+            path="/showReserve" 
+            type="com.peter2.struts1.action.ShowReserveAction">
+            <forward
+                name="showReserve" 
+                path="/WEB-INF/pages/showReserve.jsp"/> 
+        </action> 
+
+        <action 
+            path="/cancelReserve" 
+            type="com.peter2.struts1.action.CancelReserveAction">
+            <forward
+                name="showReserve" 
+                path="/WEB-INF/pages/showReserve.jsp"/> 
+        </action> 
+
+        <action 
+            path="/searchBook" 
+            type="com.peter2.struts1.action.SearchBookAction">
+            <forward
+                name="showSearch" 
+                path="/WEB-INF/pages/searchResults.jsp"/> 
+        </action> 
+
+        <action attribute="loginForm" name="loginForm" validate="true" input="/WEB-INF/form/unsafeLogin.jsp" 
+           path="/unsafeLogin" 
+           scope="request"
+           type="com.peter2.struts1.action.UnsafeLoginAction"
+           > 
+           <forward
+               name="success" 
+               path="/WEB-INF/pages/loginSuccess.jsp"/> 
+           <forward
+               name="failed" 
+               path="/WEB-INF/pages/loginFailed.jsp"/>
+       </action>
+        
+        <action  
+        	path="/showReaderInfo"
+        	type="com.peter2.struts1.action.ShowReaderInfoAction"
+        	>
+            <forward
+                name="readerInfo" 
+                path="/WEB-INF/pages/readerInfo.jsp"/> 
+        </action>
+
+        <action name="readerInfoForm" 
+           path="/updateReaderInfo" 
+           type="com.peter2.struts1.action.UpdateReaderInfoAction"
+           > 
+           <forward
+               name="success" 
+               path="/WEB-INF/pages/showMsg.jsp"/>
+       </action>
+        
+    </action-mappings> 
+    
+	<message-resources parameter="com.peter2.struts1.resources.messages"/>
+	
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property 
+			value="/org/apache/struts/validator/validator-rules.xml,/WEB-INF/validation.xml" 
+			property="pathnames"/>
+	</plug-in>
+</struts-config>
